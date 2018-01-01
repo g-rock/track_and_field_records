@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% block body %}
+  <form method="post" enctype="multipart/form-data">
+         <div>
+             <label for="tfrrs">Choose <b>tfrrs file</b> to upload</label>
+             <input type="file" id="tfrrs" name="tfrrs" multiple>
+         </div>
+         <div>
+             <label for="record">Choose <b>record file</b> to upload</label>
+             <input type="file" id="record" name="record" multiple>
+         </div>
+         <div>
+             <label for="linkCheckbox">Check to remove tfrr's link column?</label>
+             <input id="linkCheckbox" name="linkCheckbox" type="checkbox" value='true'>
+         </div>
+         </br>
+         <div>
+           <button id="download">Update tfrrs file</button>
+         </div>
+    </form>
+    <script type="text/javascript">
+        download.onclick = function(e){
+            console.log(e);
+        }
+    </script>
+{% endblock %}
