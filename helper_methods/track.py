@@ -45,6 +45,6 @@ def update_records(tfrrs_file, records_file, use_link_col):
         meet.set_value(index, "record", records.loc[(records[0] == gender) & (records[1] == event_identifier)].iloc[0]['record'])
 
     if use_link_col == 'true':
-        del meet[8]
+        meet[8] = ""
 
     return meet
