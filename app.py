@@ -3,7 +3,9 @@ import StringIO
 from helper_methods.track import update_records
 
 app = Flask(__name__)
-
+app.config.update(
+        SECRET_KEY='poop'
+)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
@@ -23,7 +25,5 @@ def index():
 
 
 if __name__ == '__main__':
-    app.config.update(
-        SECRET_KEY='poop'
-    )
+
     app.run()
