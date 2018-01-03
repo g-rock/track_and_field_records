@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 {% block body %}
   <form method="post" enctype="multipart/form-data">
+<<<<<<< Updated upstream
          <div>
              <label for="tfrrs">Choose <b>tfrrs file</b> to upload</label>
              <input type="file" id="tfrrs" name="tfrrs" multiple>
@@ -18,4 +19,44 @@
            <button onclick="click()" id="download">Update tfrrs file</button>
          </div>
     </form>
+=======
+
+<form enctype="multipart/form-data" method="post">
+<div>
+<p><strong>Step 1</strong> <br />Upload the original stats csv file from DirectAthletics</p>
+<ul>
+<li>remove any header in stats csv file using a text editor or notepad++ before uploading.</li>
+<li>Do not use excel.</li>
+</ul>
+<label for="tfrrs">Choose <strong>csv stats file</strong> to upload</label> <br /><br /> <input id="tfrrs" multiple="multiple" name="tfrrs" type="file" /></div>
+<br />
+<div>
+<p><strong>Step 2</strong><br />Upload the original records.csv.</p>
+<ul>
+<li>Only a single record is supported at this time (MR or CR or FR)</li>
+</ul>
+<label for="record">Choose <strong>records.csv file</strong> to upload</label> <br /><br /> <input id="record" multiple="multiple" name="record" type="file" /></div>
+<br />
+<p><strong>Step 3</strong> <br />CIS internet?</p>
+<ul>
+<li>If no internet on&nbsp;the announcer CIS, the tfrrs&nbsp;athlete links will be purged to prevent dead links</li>
+</ul>
+<p><label for="linkCheckbox">Check to remove athlete links?</label> <input id="linkCheckbox" name="linkCheckbox" type="checkbox" value="true" /></p>
+<p>&nbsp;</p>
+<div>
+<p><strong>Step 4</strong>&nbsp;
+<br>Create the VS stats file with records. Creates and download export.csv&nbsp;</p>
+<ul>
+<li>rename to tfrrs.csv file and place in your meets folder</li>
+<li>Please wait 5-10 seconds for processing and download</li>
+</ul>
+<button id="download">Update</button></div>
+<br /><br />
+</form>
+    <script type="text/javascript">
+        download.onclick = function(e){
+            console.log(e);
+        }
+    </script>
+>>>>>>> Stashed changes
 {% endblock %}
