@@ -1,7 +1,6 @@
 {% extends "index.html" %}
 {% block body %}
   <form method="post" enctype="multipart/form-data">
-<<<<<<< Updated upstream
          <div>
              <label for="tfrrs">Choose <b>tfrrs file</b> to upload</label>
              <input type="file" id="tfrrs" name="tfrrs" multiple>
@@ -19,7 +18,6 @@
            <button onclick="click()" id="download">Update tfrrs file</button>
          </div>
     </form>
-=======
 
 <form enctype="multipart/form-data" method="post">
 <div>
@@ -53,10 +51,4 @@
 <button id="download">Update</button></div>
 <br /><br />
 </form>
-    <script type="text/javascript">
-        download.onclick = function(e){
-            console.log(e);
-        }
-    </script>
->>>>>>> Stashed changes
 {% endblock %}
