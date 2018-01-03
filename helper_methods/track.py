@@ -42,7 +42,8 @@ def update_records(tfrrs_file, records_file, use_link_col):
     for index, row in meet.iterrows():
         gender = (meet[1][index]).lower()
         event_identifier = (meet[0][index]).lower()
-        meet.set_value(index, "record", records.loc[(records[0] == gender) & (records[1] == event_identifier)].iloc[0]['record'])
+        if event_identifier in records[1].values:
+            meet.set_value(index, "record", records.loc[(records[0] == gender) & (records[1] == event_identifier)].iloc[0]['record'])
 
     if use_link_col == 'true':
         meet[8] = ""
