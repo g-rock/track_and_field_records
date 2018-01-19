@@ -10,7 +10,7 @@ def update_records(tfrrs_file, records_file, drop_link_col, drop_relay_sb):
     del records[2]
     records = records.apply(lambda x: x.astype(str).str.lower())
 
-    relays = ['4x400', '4000dmr']
+    relays = ['4x400', '4000dmr', 'poo']
 
     tfrrs_dict = {
         "60hurdles": "60h",
@@ -52,5 +52,10 @@ def update_records(tfrrs_file, records_file, drop_link_col, drop_relay_sb):
 
     if drop_link_col == 'true':
         meet[8] = ""
+
+    if drop_relay_sb == 'true':
+        for relay in relays:
+            for index, row in meet.loc[(meet[0] == relay)].iterrows():
+                meet.set_value(index, 6, "")
 
     return meet
