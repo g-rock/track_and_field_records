@@ -1,6 +1,6 @@
 import pandas as pd
 
-def update_records(tfrrs_file, records_file, use_link_col):
+def update_records(tfrrs_file, records_file, drop_link_col, drop_relay_sb):
     df = pd.read_csv(records_file, header=None)
 
 
@@ -9,6 +9,8 @@ def update_records(tfrrs_file, records_file, use_link_col):
     records["record"] = df[8]
     del records[2]
     records = records.apply(lambda x: x.astype(str).str.lower())
+
+    relays = ['4x400', '4000dmr']
 
     tfrrs_dict = {
         "60hurdles": "60h",
@@ -35,17 +37,20 @@ def update_records(tfrrs_file, records_file, use_link_col):
             key = row[1]
             if tfrrs_dict.has_key(key):
                 records.set_value(index, 1, tfrrs_dict[key])
-
     meet = pd.read_csv(tfrrs_file, header=None)
     meet["record"] = ""
 
     for index, row in meet.iterrows():
         gender = (meet[1][index]).lower()
         event_identifier = (meet[0][index]).lower()
-        if event_identifier in records[1].values:
-            meet.set_value(index, "record", records.loc[(records[0] == gender) & (records[1] == event_identifier)].iloc[0]['record'])
+        try:
+            event_record = records.loc[(records[0] == gender) & (records[1] == event_identifier)].iloc[0]['record']
+            meet.set_value(index, "record", event_record)
+        except (IndexError):
+            pass
+            print '{}\'s {} record not supplied. Therefore it cannot be set in the new tffrs file.'.format(gender, event_identifier)
 
-    if use_link_col == 'true':
+    if drop_link_col == 'true':
         meet[8] = ""
 
     return meet
