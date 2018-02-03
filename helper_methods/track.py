@@ -10,14 +10,16 @@ def update_records(tfrrs_file, records_file, drop_link_col, drop_relay_sb):
     del records[2]
     records = records.apply(lambda x: x.astype(str).str.lower())
 
-    relays = ['4x400', '4000dmr', 'poo']
+    relays = ['4x400', '4x800','4000dmr', 'poo']
 
     tfrrs_dict = {
         "60hurdles": "60h",
         "1run": "1mile",
         "2run": "2mile",
+        "1": "1mile",
         "indoor": "ipentathlon",
         "distance": "4000dmr",
+        "dmr": "4000dmr",
         "high": "hj",
         "long": "lj",
         "pole": "pv",

@@ -14,7 +14,7 @@ def index():
         tfrrs_file = request.files['tfrrs']
         record_file = request.files['record']
         df = update_records(tfrrs_file, record_file, request.form.get('linkCheckbox'), request.form.get('relayCheckbox'))
-        resp = make_response(df.to_csv(header=False, index=False))
+        resp = make_response(df.to_csv(header=False, index=False, line_terminator='\n'))
         resp.headers["Content-Disposition"] = "attachment; filename=export.csv"
         resp.headers["Content-Type"] = "text/csv"
         return resp
