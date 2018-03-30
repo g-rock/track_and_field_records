@@ -10,13 +10,17 @@ def update_records(tfrrs_file, records_file, drop_link_col, drop_relay_sb):
     del records[2]
     records = records.apply(lambda x: x.astype(str).str.lower())
 
-    relays = ['4x400', '4x800','4000dmr', 'poo']
+    relays = ['4x400', '4x100','4x800','4000dmr', 'poo']
 
     tfrrs_dict = {
         "60hurdles": "60h",
+        "100hurdles": "100h",
+        "110hurdles": "110h",
+        "400hurdles": "400h",
         "1run": "1mile",
         "2run": "2mile",
         "1": "1mile",
+        "3000steeplechase": "3000steeple",
         "indoor": "ipentathlon",
         "distance": "4000dmr",
         "dmr": "4000dmr",
@@ -26,6 +30,9 @@ def update_records(tfrrs_file, records_file, drop_link_col, drop_relay_sb):
         "triple": "tj",
         "shot": "sp",
         "weight": "wt",
+        "javelin": "jav",
+        "hammer": "ht",
+        "discus": "dt",
 
     }
 
@@ -53,7 +60,7 @@ def update_records(tfrrs_file, records_file, drop_link_col, drop_relay_sb):
             print '{}\'s {} record not supplied. Therefore it cannot be set in the new tffrs file.'.format(gender, event_identifier)
 
     if drop_link_col == 'true':
-        meet[8] = ""
+        meet[8] = meet[8] + " " + "onclick='return false;'"
 
     if drop_relay_sb == 'true':
         for relay in relays:

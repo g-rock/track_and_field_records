@@ -1,5 +1,5 @@
 # IDEA config files
 .idea/
-
+.pyc
 *.pycwq
 
